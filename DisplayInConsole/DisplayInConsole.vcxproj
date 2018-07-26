@@ -19,13 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Box.cpp" />
     <ClCompile Include="Src\Color.cpp" />
+    <ClCompile Include="Src\Console.cpp" />
     <ClCompile Include="Src\Image.cpp" />
     <ClCompile Include="Src\ImageProcessor.cpp" />
     <ClCompile Include="Src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\Box.hpp" />
     <ClInclude Include="Include\Color.hpp" />
+    <ClInclude Include="Include\Console.hpp" />
     <ClInclude Include="Include\Image.hpp" />
     <ClInclude Include="Include\ImageProcessor.hpp" />
     <ClInclude Include="Include\stb_image.h" />

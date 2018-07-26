@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 /DisplayInConsole/Include/ImageProcessor.hpp
 /DisplayInConsole/Src/ImageProcessor.cpp
+/DisplayInConsole/3.png

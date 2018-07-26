@@ -27,7 +27,7 @@ void ImageProcessor::removeAlphaChannel(Image & image)
 	image = withoutAlpha;
 }
 
-void ImageProcessor::convertToGrayscale(Image & image)
+void ImageProcessor::convertToGrayscale(Image & image, Palette& palette)
 {
 	if (image.getNChannels() % 2 == 0)
 		removeAlphaChannel(image);
@@ -54,12 +54,94 @@ void ImageProcessor::convertToGrayscale(Image & image)
 	}
 
 	image = gray;
+
+	int val = 0;
+	palette.clear();
+	for (int i = 0; i < 16; i++) {
+		palette.push_back(Color(val, val, val));
+		val += 17;
+	}
 }
 
-void ImageProcessor::medianCut(Image & img, Palette palette)
+void ImageProcessor::medianCut(Image & image, Palette& palette, int paletteSize)
+{
+	std::vector <Box> boxes;
+	Box box;
+	Color color;
+
+	unsigned char* data = image.getData();
+	int index = 0;
+
+	// Load all pixels to first box
+
+	for (int y = 0; y < image.getHeight(); y++) {
+		for (int x = 0; x < image.getWidth(); x++) {
+			color.setColor(data[index], data[index + 1], data[index + 2]);
+			index += 3;
+			box.pixels.push_back(color);
+		}
+	}
+
+	boxes.push_back(box);
+
+	std::vector<Box> newBoxes;
+	Box left;
+	Box right;
+
+	while (boxes.size() < paletteSize) {
+		for (int i = 0; i < boxes.size(); i++) {
+			boxes[i].split(left, right);
+			newBoxes.push_back(left);
+			newBoxes.push_back(right);
+		}
+		boxes.swap(newBoxes);
+		newBoxes.clear();
+	}
+
+	palette.clear();
+	for (int i = 0; i < boxes.size(); i++) {
+		palette.push_back(boxes[i].averageColor());
+	}
+
+}
+
+void ImageProcessor::mapFloydStainberg(Image & image, Palette& palette)
 {
 }
 
-void ImageProcessor::floydStainberg(Image & img, Palette palette)
+void ImageProcessor::mapNoDiather(Image & image, Palette & palette)
 {
+	Image indexed;
+	indexed.setProperties(image.getWidth(), image.getHeight(), 1);
+
+	unsigned char * data = image.getData();
+	unsigned char * map = indexed.getData();
+
+	int dataIndex = 0;
+	int indexIndex = 0;
+	int maped;
+	Color color;
+
+	for(int y = 0; y < image.getHeight(); y++){
+		for (int x = 0; x < image.getWidth(); x++) {
+
+			// Gray image
+			if (image.getNChannels() == 1) {
+				color.setColor(data[dataIndex], data[dataIndex], data[dataIndex]);
+				dataIndex += 1;
+			}
+
+			// Color image
+			else {
+				color.setColor(data[dataIndex], data[dataIndex + 1], data[dataIndex + 2]);
+				dataIndex += 3;
+			}
+
+			maped = Color::findClosestColorInPalette(color, palette);
+			map[indexIndex] = maped;
+			indexIndex++;
+		}
+	}
+
+	image = indexed;
 }
