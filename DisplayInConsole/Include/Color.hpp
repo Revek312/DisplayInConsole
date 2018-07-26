@@ -1,3 +1,6 @@
+#ifndef DIC_COLOR_HPP
+#define DIC_COLOR_HPP
+
 #include <vector>
 #include <math.h>
 #include <limits>
@@ -33,3 +36,4 @@ private:
 
 };
 
+#endif
