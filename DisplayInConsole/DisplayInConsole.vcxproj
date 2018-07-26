@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Color.cpp" />
     <ClCompile Include="Src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\Color.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
