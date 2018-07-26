@@ -1,5 +1,5 @@
 #define STB_IMAGE_IMPLEMENTATION
-#include "../Include/Image.hpp"
+#include "../Include/ImageProcessor.hpp"
 #include <cstdio>
 
 int main(int argc, char *argv[]) {
@@ -7,9 +7,10 @@ int main(int argc, char *argv[]) {
 	Image image;
 	image.load(std::string("test.png"));
 	image.writeData();
-	image.setProperties(4,10,2);
+
+	ImageProcessor::convertToGrayscale(image);
 	image.writeData();
-	image.load(std::string("test2.png"));
-	image.writeData();
+
+
 	return 0;
 }

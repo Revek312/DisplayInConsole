@@ -109,11 +109,14 @@ Image & Image::operator=(Image & img)
 	int index = 0;
 	for (int y = 0; y < height_; y++) {
 		for (int x = 0; x < width_; x++) {
-			data_[index] = newData[index];
-			index++;
+			for (int c = 0; c < img.getNChannels(); c++) {
+				data_[index] = newData[index];
+				index++;
+			}
 		}
 	}
-	delete newData;
+
+//	delete newData;
 	return *this;
 }
 
