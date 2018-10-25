@@ -27,11 +27,11 @@ void Box::split(Box & l, Box & r)
 	int median;
 
 	if (dominant == 0) 
-		std::sort(pixels.begin(), pixels.end(), [](Color& a, Color& b) {return a.getR() < b.getR(); });
+		std::sort(pixels.begin(), pixels.end(), [](Color& a, Color& b) {return a.r_ < b.r_; });
 	if (dominant == 1)
-		std::sort(pixels.begin(), pixels.end(), [](Color& a, Color& b) {return a.getG() < b.getG(); });
+		std::sort(pixels.begin(), pixels.end(), [](Color& a, Color& b) {return a.g_ < b.g_; });
 	else
-		std::sort(pixels.begin(), pixels.end(), [](Color& a, Color& b) {return a.getB() < b.getB(); });
+		std::sort(pixels.begin(), pixels.end(), [](Color& a, Color& b) {return a.b_ < b.b_; });
 	
 	size_t halfPosition = pixels.size() / 2;
 

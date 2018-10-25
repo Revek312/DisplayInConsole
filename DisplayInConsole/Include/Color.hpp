@@ -28,11 +28,13 @@ public:
 	static double calculateIntensity(Color& color);
 	static int findClosestColorInPalette(Color& color, Palette& palette);
 
-private:
-
 	unsigned char r_;
 	unsigned char g_;
 	unsigned char b_;
+
+private:
+
+	
 
 };
 

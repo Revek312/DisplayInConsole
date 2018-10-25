@@ -65,6 +65,14 @@ void ImageProcessor::convertToGrayscale(Image & image, Palette& palette)
 
 void ImageProcessor::medianCut(Image & image, Palette& palette, int paletteSize)
 {
+	/*
+	std::size_t size = image.getHeight*image.getWidth*image.getNChannels;
+
+	unsigned char* data = new unsigned char[size];
+
+	std::memcpy(data, image.getData(), size);
+	*/
+
 	std::vector <Box> boxes;
 	Box box;
 	Color color;
@@ -103,6 +111,9 @@ void ImageProcessor::medianCut(Image & image, Palette& palette, int paletteSize)
 		palette.push_back(boxes[i].averageColor());
 	}
 
+
+	/*
+	*/
 }
 
 void ImageProcessor::mapFloydStainberg(Image & image, Palette& palette)
@@ -144,4 +155,9 @@ void ImageProcessor::mapNoDiather(Image & image, Palette & palette)
 	}
 
 	image = indexed;
+}
+
+void ImageProcessor::quicksort(unsigned char * data, size_t size)
+{
+
 }

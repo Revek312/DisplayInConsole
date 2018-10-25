@@ -262,3 +262,6 @@ __pycache__/
 /DisplayInConsole/Include/ImageProcessor.hpp
 /DisplayInConsole/Src/ImageProcessor.cpp
 /DisplayInConsole/3.png
+/DisplayInConsole/3.jpg
+*.png
+*.jpg

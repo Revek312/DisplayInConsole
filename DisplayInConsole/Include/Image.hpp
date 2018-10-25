@@ -5,6 +5,7 @@
 #include "Color.hpp"
 
 #include <string>
+#include <array>
 #include <conio.h>
 class Image {
 public:

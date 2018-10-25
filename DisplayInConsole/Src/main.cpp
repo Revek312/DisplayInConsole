@@ -2,23 +2,23 @@
 #include "../Include/ImageProcessor.hpp"
 #include "../Include/Console.hpp"
 #include <cstdio>
+#include <ctime>
 
 int main(int argc, char *argv[]) {
-	// Image test code
 	Image image;
 	Palette palette;
-
-	image.load(std::string("3.png"));
+	if(!image.load(std::string("His glorius shirt.png")))
+		return -1;
 
 	ImageProcessor::removeAlphaChannel(image);
-	ImageProcessor::convertToGrayscale(image, palette);
-//	ImageProcessor::medianCut(image, palette, 16);
+//	ImageProcessor::convertToGrayscale(image, palette);
+	ImageProcessor::medianCut(image, palette, 16);
 
 	Console::setConsolePalette(palette);
+	Console::setConsoleFont(1);
+	Console::setConsoleSize(image.getWidth(), image.getHeight() / 2);
 
 	ImageProcessor::mapNoDiather(image, palette);
-
 	Console::display(image);
-
 	return 0;
 }

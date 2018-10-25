@@ -16,6 +16,8 @@ public:
 	// Methods for mapping and diathering
 	static void mapFloydStainberg(Image& img, Palette& palette);
 	static void mapNoDiather(Image& image, Palette& palette);
+
+	static void quicksort(unsigned char* data, size_t size);
 };
 
 #endif

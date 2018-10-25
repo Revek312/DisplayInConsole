@@ -75,6 +75,7 @@ bool Image::setProperties(int width, int height, int nChannels)
 
 	data_ = nullptr;
 	data_ = new unsigned char[width_ * height_ * nChannels_];
+	
 
 	isReady_ = true;
 	fromStb_ = false;
@@ -104,6 +105,7 @@ void Image::writeData()
 Image & Image::operator=(Image & img)
 {
 	setProperties(img.getWidth(), img.getHeight(), img.getNChannels());
+	/*
 	unsigned char* newData = img.getData();
 
 	int index = 0;
@@ -117,6 +119,9 @@ Image & Image::operator=(Image & img)
 	}
 
 //	delete newData;
+	*/
+	memcpy_s(data_, width_ * height_ * nChannels_, img.getData(), width_ * height_ * nChannels_);
+
 	return *this;
 }
 
